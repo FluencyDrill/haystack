@@ -137,6 +137,17 @@ dependencies = [
   # Azure Utils
   "azure-identity",
 
+  # Dictator
+  "torch",
+  "torchaudio",
+  "torchvision",
+  "soundfile==0.13.1",
+  "whisperx==3.3.2",
+  "dotenv==0.9.9",
+  "qdrant-haystack==9.1.1",
+  "ollama-haystack==2.4.1",
+
+
   # Test
   "pytest",
   "pytest-bdd",

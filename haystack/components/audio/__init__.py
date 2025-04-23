@@ -7,9 +7,15 @@ from typing import TYPE_CHECKING
 
 from lazy_imports import LazyImporter
 
-_import_structure = {"whisper_local": ["LocalWhisperTranscriber"], "whisper_remote": ["RemoteWhisperTranscriber"]}
+_import_structure = {
+    "whisper_local": ["LocalWhisperTranscriber"],
+    "whisper_remote": ["RemoteWhisperTranscriber"],
+    "dictator": ["Dictator"],
+}
+
 
 if TYPE_CHECKING:
+    from .dictator import Dictator
     from .whisper_local import LocalWhisperTranscriber
     from .whisper_remote import RemoteWhisperTranscriber
 
