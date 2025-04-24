@@ -16,6 +16,7 @@ _import_structure = {
     "hierarchical_document_splitter": ["HierarchicalDocumentSplitter"],
     "recursive_splitter": ["RecursiveDocumentSplitter"],
     "text_cleaner": ["TextCleaner"],
+    "pre_writer_enricher": ["PreWriterEnricher"],
 }
 
 if TYPE_CHECKING:
@@ -25,6 +26,7 @@ if TYPE_CHECKING:
     from .document_preprocessor import DocumentPreprocessor
     from .document_splitter import DocumentSplitter
     from .hierarchical_document_splitter import HierarchicalDocumentSplitter
+    from .pre_writer_enricher import PreWriterEnricher
     from .recursive_splitter import RecursiveDocumentSplitter
     from .text_cleaner import TextCleaner
 

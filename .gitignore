@@ -163,3 +163,4 @@ haystack/json-schemas
 
 # Zed configs
 .zed/*
+/hf_login.py
