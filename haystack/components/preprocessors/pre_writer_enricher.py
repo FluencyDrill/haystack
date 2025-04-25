@@ -11,18 +11,21 @@ class PreWriterEnricher:
 
     @component.output_types(documents=List[Document])
     def run(self, documents: List[Document]) -> dict[str, List[Document]]:
-        """Declare output type as a list of documents"""
+        """Attach flattened metadata and audio blob to documents before writing."""
         for doc in documents:
             doc.meta["input_file_audio_path"] = self.audio_path
-            doc.meta["flags"] = {
-                "text_embedded": False,
-                "voice_embedded": False,
-                "has_summary": False,
-                "has_fingerprint": False,
-            }
+
+            # Flatten the flags into the top level of meta
+            doc.meta["text_embedded"] = False
+            doc.meta["voice_embedded"] = False
+            doc.meta["has_summary"] = False
+            doc.meta["has_fingerprint"] = False
+
+            # Attach raw audio as a blob
             with open(self.audio_path, "rb") as f:
                 raw = f.read()
             doc.blob = ByteStream(data=raw, meta={"source": self.audio_path}, mime_type="audio/mpeg")
+
         return {"documents": documents}
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,5 +34,5 @@ class PreWriterEnricher:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "PreWriterEnricher":
-        """Creates a Dictator instance from a serialized dictionary of parameters."""
+        """Creates a PreWriterEnricher instance from a serialized dictionary of parameters."""
         return default_from_dict(cls, data)
